@@ -2,7 +2,7 @@
 Proyectos relacionados a la unidad de Diseño y Análisis de Algoritmos del CIC-IPN, Semestre A22
 
 
-Proyecto 02 - Biblioteca de generación y manejo de grafos
+Proyecto 02 - Algoritmos BFS y DFS
 
 Unidad: Diseño y Análisis de Algoritmos
 
