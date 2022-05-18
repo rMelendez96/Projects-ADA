@@ -2,20 +2,16 @@
 Proyectos relacionados a la unidad de Diseño y Análisis de Algoritmos del CIC-IPN, Semestre A22
 
 
-Proyecto 02 - Algoritmos BFS y DFS
+Proyecto 03 - Algoritmo Dijkstra
 
 Unidad: Diseño y Análisis de Algoritmos
 
 Alumno: Raquel Eugenia Meléndez Zamudio
 
-Abril 2022
+Mayo 2022
 
 Objetivo del Proyecto:
 
-Utilizar la biblioteca de grafos desarrollada en el Proyecto 01 e implementar los algoritmos BFS y DFS (recursivo e iterativo) de tal forma que dado un nodo fuente (s), calculen el árbol inducido por los algoritmos mencionados; es decir, desarrollar los métodos en la clase Grafo:
+Utilizando la biblioteca de grafos desarrollada en el proyecto 1, implementar el algoritmo de Dijkstra de tal forma que dado un nodo fuente (s), calcule el árbol de caminos más cortos; es decir, desarrollar el método en la clase Grafo:
 
-def BFS(self, s):
-
-def DFS_R(self, s):
-
-def DFS_I(self, s):
+def Dijkstra(self, s):
