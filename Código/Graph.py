@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-PROYECTO O2
+PROYECTO O3
 Unidad: Diseño y Análisis de Algoritmos
 Alumno: Raquel Eugenia Meléndez Zamudio
-
-Abril 2022
-
+Mayo 2022
 CLASE GRAFO 
-IMPLEMENTACIÓN DE ALGORITMOS BFS Y DFS
-
+IMPLEMENTACIÓN DE ALGORITMOS DIJKSTRA
 """
 
-# Se importan las clases Nodo y Arista
+# Se importan las clases Nodo y Arista 
+# Se importan las librerías necesarias
 from Node import node
 from Edge import edge
+
+import heapdict
+import numpy as np
 
 class graph:
     
@@ -23,6 +24,7 @@ class graph:
         self.directed = directed
         self.nodes = set(())
         self.edges = set(())
+        self.distances = {}
     
     # Se verifica la existencia del nodo con el parámetro nombre
     # Si existe regresa un 1
@@ -82,8 +84,8 @@ class graph:
                 self.n_degree(n0)
                 self.n_degree(n1)
                 
-        return a
-    
+        return a, name
+
     # Obtiene el nodo indicado por su nombre
     def getNode(self, name):
         
@@ -93,12 +95,17 @@ class graph:
     
     # Obtiene la arista indicada por su nombre
     def getEdge(self, name):
+        for i in self.edges:
+            if i.id == name:
+                return i
+    # Obtiene la arista indicada por su nombre
+    def getEdge_n(self, name):
         e = 0
         for i in self.edges:
             if e == name:
                 return i
             e = e + 1
-    
+
     # Se muestra el grafo generado enlistando en primera instancia los nodos 
     # y posteriormente las aristas
     def showGraph(self):
@@ -123,12 +130,45 @@ class graph:
         
         return value
     
+    # Se convierte el grafo al formato necesario para generar el archivo .gv (Dijkstra)
+    def convertGraphViz_Dijkstra(self, d):
+
+        edges_split = list([None]*len(self.edges))
+        cont = 0
+        
+        for i in self.edges:
+            edges_split[cont] = str(i).split(sep = ' -- ')
+            cont = cont + 1
+        
+        cont1 = 0
+        for i,j in edges_split:
+            edges_split[cont1][0] = int(i)
+            edges_split[cont1][1] = int(j)
+            cont1 += 1
+
+        value = 'graph{\n'
+
+        for i in edges_split:
+            d1 = d[str(i[0])][0]
+            d2 = d[str(i[1])][0]
+            value = value + '"'+ str(i[0]) + " (" +str(d1) + ")" + '"'+" -- " + '"'+ str(i[1]) + " (" +str(d2) + ")" +'"'+ ';\n'
+
+        value = value + '}\n'
+
+        return value
+
     # Se genera el archivo .gv con el nombre ingresado y el número de nodos en el grafo
     def fileGraphViz(self, file_name):
         graph2save = self.convertGraphViz()
         f = open(file_name + str(len(self.nodes)) + '.gv', 'w+')
         f.write(graph2save)
     
+    # Se genera el archivo .gv para el algoritmo DIjkstra con el nombre ingresado y el número de nodos en el grafo
+    def fileGraphViz_Dijkstra(self, file_name, d):
+        graph2save = self.convertGraphViz_Dijkstra(d)
+        f = open(file_name + str(len(self.nodes)) + '.gv', 'w+')
+        f.write(graph2save)
+
     # Se genera un árbol con el algoritmo BFS (Breadth First Search)
     # dado un nodo fuente s
     def BFS(self, s):
@@ -333,9 +373,107 @@ class graph:
             n0 = c
         
         return gph_dfs
-                
-                
+
+    # Se genera el árbol de caminos más cortos con el algoritmo Dijkstra
+    # dado un nodo fuente s
+    def Dijkstra(self, s):
+
+        # Se genera el grafo
+        gph_djks = graph()
+
+        # Se declaran las estructuras de datos a utilizar
+        l = heapdict.heapdict()
+        p = dict()
+        i_t = set()
+
+        l[s] = 0
+        p[s] = None
+        
+        # Asigna distancias infinitas a los nodos y a los padres None
+        for node in self.nodes:
+            l[node.id] = np.inf
+            p[node.id] = None
+
+        #Asigna al nodo s la distancia 0
+        l[s] = 0
+        #Asigna al padre de s None
+        p[s] = None
+
+        # Se crea una lista vacía y se separan las aristas guardadas
+        # para la obtención de los nodos source y target de cada una
+        # y se guardan en la lista creada
+        edges_split = list([None]*len(self.edges))
+        cont = 0
+        
+        for i in self.edges:
+            edges_split[cont] = str(i).split(sep = ' -- ')
+            cont = cont + 1
+        
+        cont1 = 0
+        for i,j in edges_split:
+            edges_split[cont1][0] = int(i)
+            edges_split[cont1][1] = int(j)
+            cont1 += 1
+        
+
+        # Ciclo while que se realiza mientras l no este vacía
+        # y mientras aún existan distancias Infinitas
+        while l:
+            # Se saca de l el nombre del último nodo agregado y su distancia
+            n0, n0_dist = l.popitem()
             
+            if n0_dist == np.inf:
+                continue
+
+            nd = self.getNode(n0)
+            nd.dis = n0_dist
+            nd = int(str(nd))
+
+            # Se guradan las distancias en el diccionario distances
+            if str(nd) in self.distances.keys():
+                self.distances[str(nd)] = self.distances[nd].append(n0_dist)
+            else:
+                self.distances[str(nd)] = [n0_dist]
+            
+            # Se agrega el nodo al grafo
+            gph_djks.AddNode(nd)
+
+            # Se agrega la arista al grafo si el padre del nodo no es None
+            if p[nd] is not None:
+                gph_djks.AddEdge(p[nd], nd)
+
+            i_t.add(nd)
+
+            # Se obtinen los nodos vecinos
+            neighbor = []
+
+            for id_Edges in edges_split:
+                if nd in id_Edges:
+                    if nd == id_Edges[1]:
+                        n1 = id_Edges[0]
+                    else:
+                        n1 = id_Edges[1]
+                    if n1 not in i_t:
+                        neighbor.append(n1)
+
+            # Se actualizan las distancias 
+            for n1 in neighbor:
+                e = np.array([nd, n1])
+                for i in edges_split:
+                    if e[0] == i[0]:
+                        if e[1] == i[1]:
+                            edg = str(nd) + ' -- ' + str(n1)
+                    elif e[0] == i[1]:
+                        if e[1] == i[0]:
+                            edg =  str(n1) + ' -- ' + str(nd)
+                
+                e = self.getEdge(edg)
+
+                if l[n1] > n0_dist + e.weight:
+                    l[n1] = n0_dist + e.weight
+                    p[n1] = n0
+            
+        return gph_djks, self.distances
+            
+
         
-        
-    

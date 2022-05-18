@@ -1,358 +1,150 @@
 # -*- coding: utf-8 -*-
 """
-PROYECTO 02
+PROYECTO 03
 Unidad: Diseño y Análisis de Algoritmos
 Alumno: Raquel Eugenia Meléndez Zamudio
-
-Abril 2022
-
+Mayo 2022
 GENERACIÓN DE GRAFOS
-GENERACIÓN DE ÁRBOLES
-
+IMPLEMENTACIÓN DE ALGORITMO DIJKSTRA
 """
 
 import Algorithms
 
 if __name__ == '__main__':
     
-    # Para cada algoritmo de generación de grafos se muestran y generan 3 grafos
-    # con 30, 100 y 500 nodos respectivamente y diferentes parámetros dependiendo
+    # Para cada algoritmo de generación de grafos se muestran y generan 2 grafos
+    # con 70 y 500 nodos respectivamente y diferentes parámetros dependiendo
     # del algoritmo empleado
     
-    # Para cada grafo generado se generan los árboles correspondientes con BFS,
-    # DFS iterativo y DFS recursivo
+    # Para cada grafo generado se generan los grafos correspondientes con el algoritmo de Dijkstra
     
     #Grafos de Malla
-    #30 nodos
-    print("Grafo de Malla 30 Nodos")
-    gph_m1 = Algorithms.grid_Graph(10, 3)
+    #Pocos nodos
+    print("Grafo de Malla 70 Nodos")
+    gph_m1 = Algorithms.grid_Graph(10, 7)
     gph_m1.showGraph()
     gph_m1.fileGraphViz('gridGraph')
-    print("BFS")
-    bfs_gph_m1 = gph_m1.BFS(0)
-    bfs_gph_m1.showGraph()
-    bfs_gph_m1.fileGraphViz('BFS_gridGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_m1 = gph_m1.recursiveDFS(0)
-    dfs_r_gph_m1.showGraph()
-    dfs_r_gph_m1.fileGraphViz('recursiveDFS_gridGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_m1 = gph_m1.iterativeDFS(0)
-    dfs_i_gph_m1.showGraph()
-    dfs_i_gph_m1.fileGraphViz('iterativeDFS_gridGraph')
-    
-    #100 nodos
-    print("Grafo de Malla 100 Nodos")
-    gph_m2 = Algorithms.grid_Graph(10, 10)
+    print("Dijkstra")
+    dk_gph_m1, d = gph_m1.Dijkstra(0)
+    dk_gph_m1.showGraph()
+    dk_gph_m1.fileGraphViz_Dijkstra("gridGraph_Dijkstra", d)
+
+    #Muchos Nodos
+    print("Grafo de Malla 500 Nodos")
+    gph_m2 = Algorithms.grid_Graph(25, 20)
     gph_m2.showGraph()
     gph_m2.fileGraphViz('gridGraph')
-    print("BFS")
-    bfs_gph_m2 = gph_m2.BFS(0)
-    bfs_gph_m2.showGraph()
-    bfs_gph_m2.fileGraphViz('BFS_gridGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_m2 = gph_m2.recursiveDFS(0)
-    dfs_r_gph_m2.showGraph()
-    dfs_r_gph_m2.fileGraphViz('recursiveDFS_gridGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_m2 = gph_m2.iterativeDFS(0)
-    dfs_i_gph_m2.showGraph()
-    dfs_i_gph_m2.fileGraphViz('iterativeDFS_gridGraph')
-    
-    #500 nodos
-    print("Grafo de Malla 500 Nodos")
-    gph_m3 = Algorithms.grid_Graph(25, 20)
-    gph_m3.showGraph()
-    gph_m3.fileGraphViz('gridGraph')
-    print("BFS")
-    bfs_gph_m3 = gph_m3.BFS(0)
-    bfs_gph_m3.showGraph()
-    bfs_gph_m3.fileGraphViz('BFS_gridGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_m3 = gph_m3.recursiveDFS(0)
-    dfs_r_gph_m3.showGraph()
-    dfs_r_gph_m3.fileGraphViz('recursiveDFS_gridGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_m3 = gph_m3.iterativeDFS(0)
-    dfs_i_gph_m3.showGraph()
-    dfs_i_gph_m3.fileGraphViz('iterativeDFS_gridGraph')
-    
+    print("Dijkstra")
+    dk_gph_m2, d = gph_m2.Dijkstra(0)
+    dk_gph_m2.showGraph()
+    dk_gph_m2.fileGraphViz_Dijkstra("gridGraph_Dijkstra", d)
+
     
     #Grafos Erdos-Renyi
-    #30 nodos
-    print("Grafo Erdos-Renyi 30 Nodos")
-    gph_er1 = Algorithms.ErdosRenyi_Graph(30, 50)
+    #Pocos nodos
+    print("Grafo Erdos-Renyi 70 Nodos")
+    gph_er1 = Algorithms.ErdosRenyi_Graph(70, 90)
     gph_er1.showGraph()
     gph_er1.fileGraphViz('Erdos-Renyi_Graph')
-    print("BFS")
-    bfs_gph_er1 = gph_er1.BFS(0)
-    bfs_gph_er1.showGraph()
-    bfs_gph_er1.fileGraphViz('BFS_Erdos-Renyi_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_er1 = gph_er1.recursiveDFS(0)
-    dfs_r_gph_er1.showGraph()
-    dfs_r_gph_er1.fileGraphViz('recursiveDFS_Erdos-Renyi_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_er1 = gph_er1.iterativeDFS(0)
-    dfs_i_gph_er1.showGraph()
-    dfs_i_gph_er1.fileGraphViz('iterativeDFS_Erdos-Renyi_Graph')
-    
-    #100 nodos
-    print("Grafo Erdos-Renyi 100 Nodos")
-    gph_er2 = Algorithms.ErdosRenyi_Graph(100, 120)
+    print("Dijkstra")
+    dk_gph_er1, d = gph_er1.Dijkstra(0)
+    dk_gph_er1.showGraph()
+    dk_gph_er1.fileGraphViz_Dijkstra("Erdos-Renyi_Graph_Dijkstra", d) 
+
+    #Muchos nodos
+    print("Grafo Erdos-Renyi 500 Nodos")
+    gph_er2 = Algorithms.ErdosRenyi_Graph(500, 650)
     gph_er2.showGraph()
     gph_er2.fileGraphViz('Erdos-Renyi_Graph')
-    print("BFS")
-    bfs_gph_er2 = gph_er2.BFS(0)
-    bfs_gph_er2.showGraph()
-    bfs_gph_er2.fileGraphViz('BFS_Erdos-Renyi_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_er2 = gph_er2.recursiveDFS(0)
-    dfs_r_gph_er2.showGraph()
-    dfs_r_gph_er2.fileGraphViz('recursiveDFS_Erdos-Renyi_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_er2 = gph_er2.iterativeDFS(0)
-    dfs_i_gph_er2.showGraph()
-    dfs_i_gph_er2.fileGraphViz('iterativeDFS_Erdos-Renyi_Graph')
-    
-    #500 nodos
-    print("Grafo Erdos-Renyi 500 Nodos")
-    gph_er3 = Algorithms.ErdosRenyi_Graph(500, 650)
-    gph_er3.showGraph()
-    gph_er3.fileGraphViz('Erdos-Renyi_Graph')
-    print("BFS")
-    bfs_gph_er3 = gph_er3.BFS(0)
-    bfs_gph_er3.showGraph()
-    bfs_gph_er3.fileGraphViz('BFS_Erdos-Renyi_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_er3 = gph_er3.recursiveDFS(0)
-    dfs_r_gph_er3.showGraph()
-    dfs_r_gph_er3.fileGraphViz('recursiveDFS_Erdos-Renyi_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_er3 = gph_er3.iterativeDFS(0)
-    dfs_i_gph_er3.showGraph()
-    dfs_i_gph_er3.fileGraphViz('iterativeDFS_Erdos-Renyi_Graph')
+    print("Dijkstra")
+    dk_gph_er2, d = gph_er2.Dijkstra(0)
+    dk_gph_er2.showGraph()
+    dk_gph_er2.fileGraphViz_Dijkstra("Erdos-Renyi_Graph_Dijkstra", d) 
     
     
     #Grafos Gilbert
-    #30 nodos
-    print("Grafo Gilbert 30 Nodos")
-    gph_g1 = Algorithms.Gilbert_Graph(30, 0.5)
+    # Pocos nodos
+    print("Grafo Gilbert 70 Nodos")
+    gph_g1 = Algorithms.Gilbert_Graph(70, 0.5)
     gph_g1.showGraph()
     gph_g1.fileGraphViz('Gilbert_Graph')
-    print("BFS")
-    bfs_gph_g1 = gph_g1.BFS(0)
-    bfs_gph_g1.showGraph()
-    bfs_gph_g1.fileGraphViz('BFS_Gilbert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_g1 = gph_g1.recursiveDFS(0)
-    dfs_r_gph_g1.showGraph()
-    dfs_r_gph_g1.fileGraphViz('recursiveDFS_Gilbert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_g1 = gph_g1.iterativeDFS(0)
-    dfs_i_gph_g1.showGraph()
-    dfs_i_gph_g1.fileGraphViz('iterativeDFS_Gilbert_Graph')
+    print("Dijkstra")
+    dk_gph_g1, d = gph_g1.Dijkstra(0)
+    dk_gph_g1.showGraph()
+    dk_gph_g1.fileGraphViz_Dijkstra("Gilbert_Graph_Dijkstra", d) 
     
-    #100 nodos
-    print("Grafo Gilbert 100 Nodos")
-    gph_g2 = Algorithms.Gilbert_Graph(100, 0.3)
+    
+    # Muchos nodos
+    print("Grafo Gilbert 500 Nodos")
+    gph_g2 = Algorithms.Gilbert_Graph(500, 0.7)
     gph_g2.showGraph()
     gph_g2.fileGraphViz('Gilbert_Graph')
-    print("BFS")
-    bfs_gph_g2 = gph_g2.BFS(0)
-    bfs_gph_g2.showGraph()
-    bfs_gph_g2.fileGraphViz('BFS_Gilbert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_g2 = gph_g2.recursiveDFS(0)
-    dfs_r_gph_g2.showGraph()
-    dfs_r_gph_g2.fileGraphViz('recursiveDFS_Gilbert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_g2 = gph_g2.iterativeDFS(0)
-    dfs_i_gph_g2.showGraph()
-    dfs_i_gph_g2.fileGraphViz('iterativeDFS_Gilbert_Graph')
-    
-    #500 nodos
-    print("Grafo Gilbert 500 Nodos")
-    gph_g3 = Algorithms.Gilbert_Graph(500, 0.7)
-    gph_g3.showGraph()
-    gph_g3.fileGraphViz('Gilbert_Graph')
-    print("BFS")
-    bfs_gph_g3 = gph_g3.BFS(0)
-    bfs_gph_g3.showGraph()
-    bfs_gph_g3.fileGraphViz('BFS_Gilbert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_g3 = gph_g3.recursiveDFS(0)
-    dfs_r_gph_g3.showGraph()
-    dfs_r_gph_g3.fileGraphViz('recursiveDFS_Gilbert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_g3 = gph_g3.iterativeDFS(0)
-    dfs_i_gph_g3.showGraph()
-    dfs_i_gph_g3.fileGraphViz('iterativeDFS_Gilbert_Graph')
-    
+    print("Dijkstra")
+    dk_gph_g2, d = gph_g2.Dijkstra(0)
+    dk_gph_g2.showGraph()
+    dk_gph_g2.fileGraphViz_Dijkstra("Gilbert_Graph_Dijkstra", d) 
     
     #Grafos Geográfico Simple
-    #30 nodos
+    #Pocos nodos
     print("Grafo Geográfico 30 Nodos")
-    gph_gs1 = Algorithms.geographic_Graph(30, 0.4)
+    gph_gs1 = Algorithms.geographic_Graph(70, 0.4)
     gph_gs1.showGraph()
     gph_gs1.fileGraphViz('geographicGraph')
-    print("BFS")
-    bfs_gph_gs1= gph_gs1.BFS(0)
-    bfs_gph_gs1.showGraph()
-    bfs_gph_gs1.fileGraphViz('BFS_geographicGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_gs1 = gph_gs1.recursiveDFS(0)
-    dfs_r_gph_gs1.showGraph()
-    dfs_r_gph_gs1.fileGraphViz('recursiveDFS_geographicGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_gs1 = gph_gs1.iterativeDFS(0)
-    dfs_i_gph_gs1.showGraph()
-    dfs_i_gph_gs1.fileGraphViz('iterativeDFS_geographicGraph')
+    print("Dijkstra")
+    dk_gph_gs1, d = gph_gs1.Dijkstra(0)
+    dk_gph_gs1.showGraph()
+    dk_gph_gs1.fileGraphViz_Dijkstra("geographicGraph_Dijkstra", d) 
     
-    # #100 nodos                           
-    print("Grafo Geográfico 100 Nodos")
-    gph_gs2 = Algorithms.geographic_Graph(100, 0.4)
+    # Muchos nodos
+    print("Grafo Geográfico 500 Nodos")
+    gph_gs2 = Algorithms.geographic_Graph(500, 0.4)
     gph_gs2.showGraph()
     gph_gs2.fileGraphViz('geographicGraph')
-    print("BFS")
-    bfs_gph_gs2= gph_gs2.BFS(0)
-    bfs_gph_gs2.showGraph()
-    bfs_gph_gs2.fileGraphViz('BFS_geographicGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_gs2 = gph_gs2.recursiveDFS(0)
-    dfs_r_gph_gs2.showGraph()
-    dfs_r_gph_gs2.fileGraphViz('recursiveDFS_geographicGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_gs2 = gph_gs2.iterativeDFS(0)
-    dfs_i_gph_gs2.showGraph()
-    dfs_i_gph_gs2.fileGraphViz('iterativeDFS_geographicGraph')
-    
-    #500 nodos
-    print("Grafo Geográfico 500 Nodos")
-    gph_gs3 = Algorithms.geographic_Graph(500, 0.4)
-    gph_gs3.showGraph()
-    gph_gs3.fileGraphViz('geographicGraph')
-    print("BFS")
-    bfs_gph_gs3= gph_gs3.BFS(0)
-    bfs_gph_gs3.showGraph()
-    bfs_gph_gs3.fileGraphViz('BFS_geographicGraph')
-    print("DFS Recursivo")
-    dfs_r_gph_gs3 = gph_gs3.recursiveDFS(0)
-    dfs_r_gph_gs3.showGraph()
-    dfs_r_gph_gs3.fileGraphViz('recursiveDFS_geographicGraph')
-    print("DFS Iterativo")
-    dfs_i_gph_gs3 = gph_gs3.iterativeDFS(0)
-    dfs_i_gph_gs3.showGraph()
-    dfs_i_gph_gs3.fileGraphViz('iterativeDFS_geographicGraph')
+    print("Dijkstra")
+    dk_gph_gs2, d = gph_gs2.Dijkstra(0)
+    dk_gph_gs2.showGraph()
+    dk_gph_gs2.fileGraphViz_Dijkstra("geographicGraph_Dijkstra", d) 
     
     #Grafos Barabasi-Albert
-    #30 nodos
+    #Pocos nodos
     print("Grafo Barabasi-Albert 30 Nodos")
-    gph_ba1 = Algorithms.BarabasiAlbert_Graph(30, 5)
+    gph_ba1 = Algorithms.BarabasiAlbert_Graph(70, 5)
     gph_ba1.showGraph()
     gph_ba1.fileGraphViz('Barabasi-Albert_Graph')
-    print("BFS")
-    bfs_gph_ba1= gph_ba1.BFS(0)
-    bfs_gph_ba1.showGraph()
-    bfs_gph_ba1.fileGraphViz('BFS_Barabasi-Albert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_ba1 = gph_ba1.recursiveDFS(0)
-    dfs_r_gph_ba1.showGraph()
-    dfs_r_gph_ba1.fileGraphViz('recursiveDFS_Barabasi-Albert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_ba1 = gph_ba1.iterativeDFS(0)
-    dfs_i_gph_ba1.showGraph()
-    dfs_i_gph_ba1.fileGraphViz('iterativeDFS_Barabasi-Albert_Graph')
-    
-    #100 nodos
-    print("Grafo Barabasi-Albert 100 Nodos")
-    gph_ba2 = Algorithms.BarabasiAlbert_Graph(100, 5)
+    print("Dijkstra")
+    dk_gph_ba1, d = gph_ba1.Dijkstra(0)
+    dk_gph_ba1.showGraph()
+    dk_gph_ba1.fileGraphViz_Dijkstra("Barabasi-Albert_Graph_Dijkstra", d) 
+
+    # Muchos nodos
+    print("Grafo Barabasi-Albert 500 Nodos")
+    gph_ba2 = Algorithms.BarabasiAlbert_Graph(500, 5)
     gph_ba2.showGraph()
     gph_ba2.fileGraphViz('Barabasi-Albert_Graph')
-    print("BFS")
-    bfs_gph_ba2= gph_ba2.BFS(0)
-    bfs_gph_ba2.showGraph()
-    bfs_gph_ba2.fileGraphViz('BFS_Barabasi-Albert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_ba2 = gph_ba2.recursiveDFS(0)
-    dfs_r_gph_ba2.showGraph()
-    dfs_r_gph_ba2.fileGraphViz('recursiveDFS_Barabasi-Albert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_ba2 = gph_ba2.iterativeDFS(0)
-    dfs_i_gph_ba2.showGraph()
-    dfs_i_gph_ba2.fileGraphViz('iterativeDFS_Barabasi-Albert_Graph')
-    
-    #500 nodos
-    print("Grafo Barabasi-Albert 500 Nodos")
-    gph_ba3 = Algorithms.BarabasiAlbert_Graph(500, 5)
-    gph_ba3.showGraph()
-    gph_ba3.fileGraphViz('Barabasi-Albert_Graph')
-    print("BFS")
-    bfs_gph_ba3= gph_ba3.BFS(0)
-    bfs_gph_ba3.showGraph()
-    bfs_gph_ba3.fileGraphViz('BFS_Barabasi-Albert_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_ba3 = gph_ba3.recursiveDFS(0)
-    dfs_r_gph_ba3.showGraph()
-    dfs_r_gph_ba3.fileGraphViz('recursiveDFS_Barabasi-Albert_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_ba3 = gph_ba3.iterativeDFS(0)
-    dfs_i_gph_ba3.showGraph()
-    dfs_i_gph_ba3.fileGraphViz('iterativeDFS_Barabasi-Albert_Graph')
+    print("Dijkstra")
+    dk_gph_ba2, d = gph_ba2.Dijkstra(0)
+    dk_gph_ba2.showGraph()
+    dk_gph_ba2.fileGraphViz_Dijkstra("Barabasi-Albert_Graph_Dijkstra", d) 
     
     
     #Grafos Dorogovtsev-Mendes
-    #30 nodos
+    #Pocos nodos
     print("Grafo Dorogovtsev-Mendes 30 Nodos")
-    gph_dm1 = Algorithms.DorogovtsevMendes_Graph(30)
+    gph_dm1 = Algorithms.DorogovtsevMendes_Graph(70)
     gph_dm1.showGraph()
     gph_dm1.fileGraphViz('Dorogovtsev-Mendes_Graph')
-    print("BFS")
-    bfs_gph_dm1= gph_dm1.BFS(0)
-    bfs_gph_dm1.showGraph()
-    bfs_gph_dm1.fileGraphViz('BFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_dm1 = gph_dm1.recursiveDFS(0)
-    dfs_r_gph_dm1.showGraph()
-    dfs_r_gph_dm1.fileGraphViz('recursiveDFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_dm1 = gph_dm1.iterativeDFS(0)
-    dfs_i_gph_dm1.showGraph()
-    dfs_i_gph_dm1.fileGraphViz('iterativeDFS_Dorogovtsev-Mendes_Graph')
-    
-    #100 nodos
-    print("Grafo Dorogovtsev-Mendes 100 Nodos")
-    gph_dm2 = Algorithms.DorogovtsevMendes_Graph(100)
+    print("Dijkstra")
+    dk_gph_dm1, d = gph_dm1.Dijkstra(0)
+    dk_gph_dm1.showGraph()
+    dk_gph_dm1.fileGraphViz_Dijkstra("Dorogovtsev-Mendes_Graph_Dijkstra", d) 
+
+    # Muchos nodos
+    print("Grafo Dorogovtsev-Mendes 500 Nodos")
+    gph_dm2 = Algorithms.DorogovtsevMendes_Graph(500)
     gph_dm2.showGraph()
     gph_dm2.fileGraphViz('Dorogovtsev-Mendes_Graph')
-    print("BFS")
-    bfs_gph_dm2= gph_dm2.BFS(0)
-    bfs_gph_dm2.showGraph()
-    bfs_gph_dm2.fileGraphViz('BFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_dm2 = gph_dm2.recursiveDFS(0)
-    dfs_r_gph_dm2.showGraph()
-    dfs_r_gph_dm2.fileGraphViz('recursiveDFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_dm2 = gph_dm2.iterativeDFS(0)
-    dfs_i_gph_dm2.showGraph()
-    dfs_i_gph_dm2.fileGraphViz('iterativeDFS_Dorogovtsev-Mendes_Graph')
-    
-    #500 nodos
-    print("Grafo Dorogovtsev-Mendes 500 Nodos")
-    gph_dm3 = Algorithms.DorogovtsevMendes_Graph(500)
-    gph_dm3.showGraph()
-    gph_dm3.fileGraphViz('Dorogovtsev-Mendes_Graph')
-    print("BFS")
-    bfs_gph_dm3= gph_dm3.BFS(0)
-    bfs_gph_dm3.showGraph()
-    bfs_gph_dm3.fileGraphViz('BFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Recursivo")
-    dfs_r_gph_dm3 = gph_dm3.recursiveDFS(0)
-    dfs_r_gph_dm3.showGraph()
-    dfs_r_gph_dm3.fileGraphViz('recursiveDFS_Dorogovtsev-Mendes_Graph')
-    print("DFS Iterativo")
-    dfs_i_gph_dm3 = gph_dm3.iterativeDFS(0)
-    dfs_i_gph_dm3.showGraph()
-    dfs_i_gph_dm3.fileGraphViz('iterativeDFS_Dorogovtsev-Mendes_Graph')
-    
+    print("Dijkstra")
+    dk_gph_dm2, d = gph_dm2.Dijkstra(0)
+    dk_gph_dm2.showGraph()
+    dk_gph_dm2.fileGraphViz_Dijkstra("Dorogovtsev-Mendes_Graph_Dijkstra", d) 
+   

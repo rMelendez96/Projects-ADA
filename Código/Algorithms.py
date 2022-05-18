@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-PROYECTO 02
+PROYECTO 03
 Unidad: Diseño y Análisis de Algoritmos
 Alumno: Raquel Eugenia Meléndez Zamudio
-
-Abril 2022
-
+Mayo 2022
 ALGORITMOS PARA GENERACIÓN DE GRAFOS
-
 """
 
 from Graph import graph
@@ -54,10 +51,17 @@ def grid_Graph(m, n=0, directed = False):
             # Se agregan las aristas para el nodo n(i,j) hacia n(i+1,j) y hacia el nodo n(i,j+1)
             if i < m-1:
                 nnode_1 = (i + 1) * m + j
-                gph.AddEdge(nnode, nnode_1)
+                a, name = gph.AddEdge(nnode, nnode_1)
+                if a == 1:
+                    edg = gph.getEdge(name)
+                    edg.weight = random.randint(1,100)
+
             if j < n-1:
                 nnode_2 = i*m + (j+1)
-                gph.AddEdge(nnode, nnode_2)
+                a, name = gph.AddEdge(nnode, nnode_2)
+                if a == 1:
+                    edg = gph.getEdge(name)
+                    edg.weight = random.randint(1,100)
      
     # Se regresa el grafo generado
     return gph
@@ -97,8 +101,10 @@ def ErdosRenyi_Graph(n, m, directed = False, auto = False):
         
         # Si los nodos seleccionados son diferentes se agrega la arista
         if n0 != n1:
-            gph.AddEdge(n0, n1)
-            
+            a, name = gph.AddEdge(n0, n1)
+            if a == 1:
+                edg = gph.getEdge(name)
+                edg.weight = random.randint(1,100)
     # Se regresa el grafo generado      
     return gph
 
@@ -136,7 +142,11 @@ def Gilbert_Graph(n, p, directed = False, auto = False):
             
             if random.random() < p:
                 if j != i:
-                    gph.AddEdge(i, j)
+                    a, name = gph.AddEdge(i, j)
+                    if a == 1:
+                        edg = gph.getEdge(name)
+                        edg.weight = random.randint(1,100)
+
                     
     # Se regresa el grafo generado
     return gph
@@ -170,6 +180,7 @@ def geographic_Graph(n, r, directed = False, auto = False):
         # Si el nodo fue agregado se le asignan coordenadas aleatorias para x y y
         if gph.AddNode(i) == 1:
             node = gph.getNode(i)
+            #print(str(node))
             node.xpos = random.random()
             node.ypos = random.random()
     
@@ -180,7 +191,10 @@ def geographic_Graph(n, r, directed = False, auto = False):
                 d = distance(gph.getNode(i), gph.getNode(j))
                 
                 if d <= r:
-                    gph.AddEdge(i, j)
+                    a, name = gph.AddEdge(i, j)
+                    if a == 1:
+                        edg = gph.getEdge(name)
+                        edg.weight = random.randint(1,100)
                     
     # Se regresa el grafo generado
     return gph
@@ -226,7 +240,10 @@ def BarabasiAlbert_Graph(n, d, directed = False, auto = False):
             # Si el random generado es menor a la probabilidad calculada, se agrega la arista
             if random.random() < p:
                 if j != i:  
-                    gph.AddEdge(i, j)                
+                    a, name = gph.AddEdge(i, j)  
+                    if a == 1:
+                        edg = gph.getEdge(name)
+                        edg.weight = random.randint(1,100)              
                 
     # Se regresa el nodo generado
     return gph
@@ -255,9 +272,15 @@ def DorogovtsevMendes_Graph(n, directed = False):
     # Se agregan las aristas entre los primeros tres nodos formando un triángulo
     for i in range(3):
         if i < 2:
-            gph.AddEdge(i, i+1)
+            a, name = gph.AddEdge(i, i+1)
+            if a == 1:
+                edg = gph.getEdge(name)
+                edg.weight = random.randint(1,100)
         else:
-            gph.AddEdge(i, i-i)
+            a, name = gph.AddEdge(i, i-i)
+            if a == 1:
+                edg = gph.getEdge(name)
+                edg.weight = random.randint(1,100)
             
     # Se agregan los nodos desde 3 hasta n
     for i in range(3, n):
@@ -267,21 +290,17 @@ def DorogovtsevMendes_Graph(n, directed = False):
         r_edge = random.randrange(0, i)
         
         # Se crean las aristas entre el nodo nuevo y los extremos de la arista seleccionada
-        e = gph.getEdge(r_edge)
+        e = gph.getEdge_n(r_edge)
         n0 = int(e.source)
         n1 = int(e.target)
-        gph.AddEdge(i, n0)
-        gph.AddEdge(i, n1)
+        a, name1 = gph.AddEdge(i, n0)
+        b, name2 = gph.AddEdge(i, n1)
         
+        edg1 = gph.getEdge(name1)
+        edg1.weight = random.randint(1,100)
+        edg2 = gph.getEdge(name2)
+        edg2.weight = random.randint(1,100)
+
+
     # Se regresa el nodo generado
     return gph
-
-
-
-                    
-        
-    
-    
-
-        
-        
