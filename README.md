@@ -2,20 +2,20 @@
 Proyectos relacionados a la unidad de Diseño y Análisis de Algoritmos del CIC-IPN, Semestre A22
 
 
-Proyecto 02 - Algoritmos BFS y DFS
+Proyecto 04 - Algoritmos Kruskal y Prim
 
 Unidad: Diseño y Análisis de Algoritmos
 
 Alumno: Raquel Eugenia Meléndez Zamudio
 
-Abril 2022
+Junio 2022
 
 Objetivo del Proyecto:
 
-Utilizar la biblioteca de grafos desarrollada en el Proyecto 01 e implementar los algoritmos BFS y DFS (recursivo e iterativo) de tal forma que dado un nodo fuente (s), calculen el árbol inducido por los algoritmos mencionados; es decir, desarrollar los métodos en la clase Grafo:
+Utilizando la biblioteca de grafos desarrollada en el proyecto 01, implementar los algoritmos de Kruskal (directo e inverso) y Prim de tal forma que calculen el árbol de expansión mínima; es decir, desarrollar los métodos en la clase Grafo:
 
-def BFS(self, s):
+def KruskalD(self):
 
-def DFS_R(self, s):
+def KruskalI(self):
 
-def DFS_I(self, s):
+def Prim(self):
