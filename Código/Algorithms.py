@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-PROYECTO 03
+PROYECTO 04
 Unidad: Diseño y Análisis de Algoritmos
 Alumno: Raquel Eugenia Meléndez Zamudio
-Mayo 2022
+Junio 2022
 ALGORITMOS PARA GENERACIÓN DE GRAFOS
 """
 
