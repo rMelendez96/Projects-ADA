@@ -2,7 +2,7 @@
 Proyectos relacionados a la unidad de Diseño y Análisis de Algoritmos del CIC-IPN, Semestre A22
 
 
-Proyecto 04 - Algoritmos Kruskal y Prim
+Proyecto 06 - Disposición de Grafos - Parte II
 
 Unidad: Diseño y Análisis de Algoritmos
 
@@ -12,10 +12,6 @@ Junio 2022
 
 Objetivo del Proyecto:
 
-Utilizando la biblioteca de grafos desarrollada en el proyecto 01, implementar los algoritmos de Kruskal (directo e inverso) y Prim de tal forma que calculen el árbol de expansión mínima; es decir, desarrollar los métodos en la clase Grafo:
-
-def KruskalD(self):
-
-def KruskalI(self):
-
-def Prim(self):
+Dado un grafo, y utilizando pygame, generar una visualización del mismo. 
+Force-directed: calcula la disposición de un grafo mediante el algoritmo de equilibrio de fuerzas de Fruchterman y Reigold (1991). O(n^2)
+Mediante force-directed: utilizando la optimización de Barnes y Hut (1986). O(n log(n))
